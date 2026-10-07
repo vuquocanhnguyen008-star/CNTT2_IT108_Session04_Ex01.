@@ -1,0 +1,18 @@
+Bài 1 : Khởi tạo cấu trúc dự án bằng Terminal
+Phần 1: Phân tích lỗi
+Dựa trên hình ảnh hiện trường thao tác và thông báo lỗi từ Terminal, dưới đây là 3 lỗi sai trong chuỗi lệnh của Nam: 
+•	Lỗi 1: Không sử dụng dấu ngoặc kép cho tên thư mục chứa khoảng trắng (mkdir Shopee Projects)
+o	Giải thích: Trong PowerShell, dấu khoảng trắng dùng để phân tách các đối số (arguments). Khi gõ mkdir Shopee Projects, PowerShell hiểu Nam muốn tạo 2 thư mục riêng biệt là Shopee và Projects. 
+•	Lỗi 2: Không đặt đường dẫn có khoảng trắng trong ngoặc kép khi dùng lệnh cd (cd Shopee Projects)
+o	Giải thích: Lệnh cd (alias của Set-Location) chỉ nhận 1 tham số vị trí làm đường dẫn. Khi không dùng dấu ngoặc kép, từ Projects bị hiểu là một tham số vị trí thứ hai không hợp lệ. 
+o	Thông báo lỗi tương ứng: A positional parameter cannot be found that accepts argument 'Projects'.
+•	Lỗi 3: Chuyển hướng đến thư mục chưa tồn tại
+o	Giải thích: Do Lệnh 1 bị lỗi logic (tạo ra 2 thư mục Shopee và Projects thay vì Shopee Projects), thư mục Shopee Projects thực tế không hề tồn tại trên hệ thống. Do đó, việc gọi lệnh di chuyển vào thư mục này sẽ thất bại. 
+o	Thông báo lỗi tương ứng: Cannot find path '...' because it does not exist.
+Phần 2: Hoàn thiện chuỗi lệnh PowerShell (đúng 3 dòng lệnh)
+Để tạo toàn bộ cấu trúc thư mục dự án và bản sao lưu trong đúng 3 dòng lệnh, Nam thực hiện như sau: 
+PowerShell
+mkdir "Shopee Projects\src\assets\images"
+cd "Shopee Projects"
+Copy-Item src -Destination src-backup -Recurse
+
